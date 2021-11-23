@@ -12,21 +12,22 @@ const LoginForm = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text>Email</Text>
+      <Text>{translate('components.login_form.email')}</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
         value={email}
       />
-      <Text>{translate('password')}</Text>
+      <Text>{translate('components.login_form.password')}</Text>
       <TextInput
         style={styles.input}
         onChangeText={setPassword}
         value={password}
+        secureTextEntry={true}
       />
       <Button
         onPress={onLogin}
-        title="Entrar"
+        title={translate('components.login_form.button')}
       />
     </View>
   );
