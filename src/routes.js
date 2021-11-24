@@ -1,22 +1,38 @@
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './pages/home';
+import { connect } from 'react-redux';
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 const Stack = createNativeStackNavigator();
 
-const Routes = () => {
+const Routes = (props) => {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: 'My App Name' }}
-        />
+        {props.currentUser == null ? (
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ title: 'My App Name' }}
+          />
+        ) : (
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ title: 'Home' }}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-export default Routes;
+const mapStateToProps = (state) => {
+  const { auth } = state;
+  return { currentUser: auth };
+};
+
+export default connect(mapStateToProps)(Routes);

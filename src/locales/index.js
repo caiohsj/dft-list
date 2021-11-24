@@ -39,3 +39,5 @@ const setLanguageToI18n = () => {
 setLanguageToI18n()
 
 export const translate = key => I18n.t(key)
+
+export const locale = getLanguageByDevice()

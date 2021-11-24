@@ -1,4 +1,9 @@
 export default {
-  email: 'Email',
-  password: 'Senha',
-}
+  components: {
+    login_form: {
+      email: 'Email',
+      password: 'Senha',
+      button: 'Entrar',
+    },
+  },
+};
