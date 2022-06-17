@@ -36,6 +36,12 @@ const Home = (props) => {
     },
   ];
 
+  let acc = 0;
+
+  const totalValue = items.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, acc);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -47,7 +53,7 @@ const Home = (props) => {
             {translate('pages.home.header.total_of_buy')}
           </Text>
           <Text style={styles.totalValue}>
-            R$ 0,00
+            {totalValue}
           </Text>
         </View>
       </View>
