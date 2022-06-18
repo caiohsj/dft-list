@@ -1,44 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
 import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
+import { fetchListItems, saveListItem } from '../services/listItem';
 
 const Home = (props) => {
-  const items = [
-    {
-      id: 1,
-      completed: false,
-      name: 'Arroz 5KG',
-      price: 12.00,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      completed: false,
-      name: 'Feijão 1KG',
-      price: 14.00,
-      quantity: 5,
-    },
-    {
-      id: 3,
-      completed: false,
-      name: 'Óleo de soja 1L',
-      price: 10.00,
-      quantity: 3,
-    },
-    {
-      id: 4,
-      completed: true,
-      name: 'Café 1L',
-      price: 8.50,
-      quantity: 2,
-    },
-  ];
+  fetchListItems();
 
   let acc = 0;
-
-  const totalValue = items.reduce((acc, item) => {
+  const totalValue = props.listItems.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, acc);
 
@@ -46,7 +17,7 @@ const Home = (props) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.quantityFinishedItems}>
-          0/0
+          0/{props.listItems.length}
         </Text>
         <View style={styles.containerTotalValue}>
           <Text style={styles.labelTotalValue}>
@@ -58,14 +29,14 @@ const Home = (props) => {
         </View>
       </View>
 
-      <ListItemsTable items={items} />
+      <ListItemsTable items={props.listItems} />
     </View>
   );
 }
 
 const mapStateToProps = (state) => {
-  const { auth } = state;
-  return { auth };
+  const { listItems } = state;
+  return { listItems };
 };
 
 export default connect(mapStateToProps)(Home);
