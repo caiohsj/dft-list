@@ -13,6 +13,9 @@ const Item = (props) => {
       onPress={() => {
         props.onComplete(item);
       }}
+      onLongPress={() => {
+        props.onLongPress(item);
+      }}
     >
       <View style={[styles.listItemColumn, styles.iconColumn]}>
         <Image source={icon} />

@@ -5,10 +5,13 @@ import { translate } from '../locales';
 import { fetchListItems, createListItem, completeListItem } from '../services/listItem';
 import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
 import BaseButton from '../components/buttons/BaseButton';
-import CreateListItemForm from '../components/forms/CreateListItemForm';
+import CreateListItemModal from '../components/modals/CreateListItemModal';
+import ListItemModal from '../components/modals/ListItemModal';
+
 
 const Home = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [createListItemModalVisible, setCreateListItemModalVisible] = useState(false);
+  const [listItemModalVisible, setListItemModalVisible] = useState(false);
 
   fetchListItems();
 
@@ -43,37 +46,33 @@ const Home = (props) => {
         alignSelf="center"
         marginBottom={24}
         onPress={() => {
-          setModalVisible(true);
+          setCreateListItemModalVisible(true);
         }}
       />
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <CreateListItemForm
-              onCancel={() => {
-                setModalVisible(!modalVisible);
-              }}
-              onSave={(item) => {
-                createListItem(item).then(() => {
-                  setModalVisible(!modalVisible);
-                });
-              }}
-            />
-          </View>
-        </View>
-      </Modal>
-      
+      <CreateListItemModal
+        visible={createListItemModalVisible}
+        onCancel={() => {
+          setCreateListItemModalVisible(false);
+        }}
+        onSave={(item) => {
+          createListItem(item).then(() => {
+            setCreateListItemModalVisible(false);
+          });
+        }}
+      />
+
       <ListItemsTable
         items={props.listItems}
         onItemPress={(item) => {
           completeListItem(item.id);
         }}
+        onItemLongPress={(item) => {
+          setListItemModalVisible(true);
+        }}
       />
+
+      <ListItemModal visible={listItemModalVisible} onCancel={() => setListItemModalVisible(false)}/>
     </View>
   );
 }

@@ -6,7 +6,14 @@ import { translate } from '../../../locales';
 const ListItemsTable = (props) => {
   const renderItem = () => {
     return props.items.map((item) => {
-      return <Item key={item.id} item={item} onComplete={(item) => props.onItemPress(item)} />;
+      return (
+        <Item
+          key={item.id}
+          item={item}
+          onComplete={(item) => props.onItemPress(item)}
+          onLongPress={(item) => props.onItemLongPress(item)}
+        />
+      );
     });
   };
 
