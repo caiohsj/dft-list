@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import Routes from './routes';
 import store from './store';
@@ -10,7 +9,6 @@ const App = () => {
   return (
     <RootSiblingParent>
       <Provider store={store}>
-        <StatusBar style="auto" />
         <ErrorToast />
         <Routes />
       </Provider>
