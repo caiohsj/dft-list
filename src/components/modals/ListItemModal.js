@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, Modal } from 'react-native';
+import { connect } from 'react-redux';
 import BaseButton from '../buttons/BaseButton';
-import Item from '../tables/ListItemsTable/Item';
 
 const ListItemModal = (props) => {
+
   return (
     <Modal
       animationType="slide"
@@ -14,13 +15,15 @@ const ListItemModal = (props) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.title}>
-            Tem certeza que deseja deletar o item?
+            Tem certeza que deseja deletar o item ({props.item.name})?
           </Text>
           <BaseButton
             text="Excluir"
             bgColor="#EC7063"
             textColor="#FFFFFF"
-            onPress={props.onDelete}
+            onPress={() => {
+              props.onDelete(props.item);
+            }}
           />
         </View>
       </View>
@@ -50,4 +53,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItemModal;
+const mapStateToProps = (state) => {
+  return { item: state.listItem.current };
+};
+
+export default connect(mapStateToProps)(ListItemModal);

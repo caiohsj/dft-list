@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Modal } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
-import { fetchListItems, createListItem, completeListItem } from '../services/listItem';
+import store from '../store';
+import { fetchListItems, createListItem, completeListItem, deleteListItem } from '../services/listItem';
 import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
 import BaseButton from '../components/buttons/BaseButton';
 import CreateListItemModal from '../components/modals/CreateListItemModal';
@@ -69,17 +70,25 @@ const Home = (props) => {
         }}
         onItemLongPress={(item) => {
           setListItemModalVisible(true);
+          props.dispatch({ type: 'SET_CURRENT_LIST_ITEM', payload: item });
         }}
       />
 
-      <ListItemModal visible={listItemModalVisible} onCancel={() => setListItemModalVisible(false)}/>
+      <ListItemModal
+        visible={listItemModalVisible}
+        onCancel={() => setListItemModalVisible(false)}
+        onDelete={(item) => {
+          deleteListItem(item.id).then(() => {
+            setListItemModalVisible(false);
+          });
+        }}
+      />
     </View>
   );
 }
 
 const mapStateToProps = (state) => {
-  const { listItems } = state;
-  return { listItems };
+  return { listItems: state.listItem.all };
 };
 
 export default connect(mapStateToProps)(Home);

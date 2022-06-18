@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 const reducers = combineReducers({
   auth: AuthReducer,
   error: ErrorReducer,
-  listItems: ListItemReducer
+  listItem: ListItemReducer
 });
 
 export default createStore(reducers);

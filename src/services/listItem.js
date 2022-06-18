@@ -11,14 +11,14 @@ const createTable = async (db) => {
       price DECIMAL(10,2) NOT NULL,
       quantity INTEGER NOT NULL
     );`;
-    
+
     await db.executeSql(query);
   };
-  
+
   getDBConnection().then(db => {
     createTable(db);
   }).catch(error => { console.log('error', error); });
-  
+
   export const fetchListItems = async () => {
     const db = await getDBConnection();
     try {
@@ -32,7 +32,7 @@ const createTable = async (db) => {
     store.dispatch({ type: 'SET_LIST_ITEMS', payload: listItems });
   } catch (error) {
     console.error(error);
-    throw Error('Failed to get todoItems !!!');
+    throw Error('Failed to get list items !!!');
   }
 };
 
@@ -50,4 +50,11 @@ export const completeListItem = async (id) => {
   const updateQuery = `UPDATE ${tableName} SET completed = 1 WHERE id = ${id}`;
 
   return db.executeSql(updateQuery);
+};
+
+export const deleteListItem = async (id) => {
+  const db = await getDBConnection();
+  const deleteQuery = `DELETE FROM ${tableName} WHERE id = ${id}`;
+
+  return db.executeSql(deleteQuery);
 };
