@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import iconErrorFilled from '../../../assets/icons/error-filled.png';
 import iconCheckMark from '../../../assets/icons/check-mark.png';
 
@@ -8,7 +8,12 @@ const Item = (props) => {
   const icon = item.completed ? iconCheckMark : iconErrorFilled;
 
   return (
-    <View style={styles.listItem}>
+    <TouchableOpacity
+      style={styles.listItem}
+      onPress={() => {
+        props.onComplete(item);
+      }}
+    >
       <View style={[styles.listItemColumn, styles.iconColumn]}>
         <Image source={icon} />
       </View>
@@ -21,7 +26,7 @@ const Item = (props) => {
       <Text style={[styles.textRight, styles.listItemColumn, styles.quantityColumn]}>
         {item.quantity}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -45,10 +50,10 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   priceColumn: {
-    width: '20%',
+    width: '15%',
   },
   quantityColumn: {
-    width: '20%',
+    width: '25%',
   },
 });
 

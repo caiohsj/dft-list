@@ -44,3 +44,10 @@ export const createListItem = async (item) => {
 
   return db.executeSql(insertQuery);
 };
+
+export const completeListItem = async (id) => {
+  const db = await getDBConnection();
+  const updateQuery = `UPDATE ${tableName} SET completed = 1 WHERE id = ${id}`;
+
+  return db.executeSql(updateQuery);
+};

@@ -6,7 +6,7 @@ import { translate } from '../../../locales';
 const ListItemsTable = (props) => {
   const renderItem = () => {
     return props.items.map((item) => {
-      return <Item key={item.id} item={item} />;
+      return <Item key={item.id} item={item} onComplete={(item) => props.onItemPress(item)} />;
     });
   };
 
@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   priceColumn: {
-    width: '20%',
+    width: '15%',
   },
   quantityColumn: {
-    width: '20%',
+    width: '25%',
   },
   rightColumnHeader: {
     textAlign: 'right',
