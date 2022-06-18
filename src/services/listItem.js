@@ -7,7 +7,7 @@ const createTable = async (db) => {
   const query = `CREATE TABLE IF NOT EXISTS ${tableName}(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(255) NOT NULL,
-      completed BOOLEAN NOT NULL,
+      completed BOOLEAN NOT NULL DEFAULT 0,
       price DECIMAL(10,2) NOT NULL,
       quantity INTEGER NOT NULL
     );`;
@@ -39,8 +39,8 @@ const createTable = async (db) => {
 export const createListItem = async (item) => {
   const db = await getDBConnection();
   const insertQuery =
-    `INSERT INTO ${tableName}(name, completed, price, quantity) values` +
-    `('${item.name}', '${item.completed}', '${item.price}', '${item.quantity}')`;
+    `INSERT INTO ${tableName}(name, price, quantity) values` +
+    `('${item.name}', '${item.price}', '${item.quantity}')`;
 
   return db.executeSql(insertQuery);
 };

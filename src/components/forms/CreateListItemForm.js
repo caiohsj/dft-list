@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import BaseButton from '../buttons/BaseButton';
 import { translate } from '../../locales';
 
 const CreateListItemForm = (props) => {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState(0.0);
+  const [quantity, setQuantity] = useState(0);
+
   return (
     <View style={styles.form}>
       <TextInput
         style={styles.input}
-        placeholder="Informe o nome do produto"
+        placeholder={translate('components.forms.create_list_item_form.placeholders.name')}
+        onChangeText={(text) => setName(text)}
+        value={name}
       />
       <TextInput
         style={styles.input}
-        placeholder="Informe a quantidade do produto"
+        placeholder={translate('components.forms.create_list_item_form.placeholders.quantity')}
+        onChangeText={(text) => setQuantity(text)}
+        value={quantity}
       />
       <TextInput
         style={styles.input}
-        placeholder="Informe o preço do produto"
+        placeholder={translate('components.forms.create_list_item_form.placeholders.price')}
+        onChangeText={(text) => setPrice(text)}
+        value={price}
       />
       <View style={styles.buttonsContainer}>
         <BaseButton
@@ -31,7 +41,13 @@ const CreateListItemForm = (props) => {
           width="49%"
           textColor="#FFFFFF"
           text={translate('components.forms.create_list_item_form.save')}
-          onPress={props.onSave}
+          onPress={() => {
+            props.onSave({
+              name,
+              price,
+              quantity,
+            })
+          }}
         />
       </View>
     </View>

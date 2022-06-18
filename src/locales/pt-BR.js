@@ -9,6 +9,11 @@ export default {
       create_list_item_form: {
         cancel: 'Cancelar',
         save: 'Salvar',
+        placeholders: {
+          name: 'Informe o nome do produto',
+          quantity: 'Informe a quantidade do produto',
+          price: 'Informe o preço do produto',
+        },
       },
     },
     tables: {

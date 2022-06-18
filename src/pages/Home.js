@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Modal, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
-import { fetchListItems, saveListItem } from '../services/listItem';
+import { fetchListItems, createListItem } from '../services/listItem';
 import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
 import BaseButton from '../components/buttons/BaseButton';
 import CreateListItemForm from '../components/forms/CreateListItemForm';
@@ -55,6 +55,11 @@ const Home = (props) => {
             <CreateListItemForm
               onCancel={() => {
                 setModalVisible(!modalVisible);
+              }}
+              onSave={(item) => {
+                createListItem(item).then(() => {
+                  setModalVisible(!modalVisible);
+                });
               }}
             />
           </View>
