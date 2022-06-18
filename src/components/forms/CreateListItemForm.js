@@ -5,8 +5,8 @@ import { translate } from '../../locales';
 
 const CreateListItemForm = (props) => {
   const [name, setName] = useState('');
-  const [price, setPrice] = useState(0.0);
-  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
 
   return (
     <View style={styles.form}>
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: 10,
     marginBottom: 24,
+    height: 48,
   },
   buttonsContainer: {
     flexDirection: 'row',

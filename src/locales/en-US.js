@@ -12,7 +12,7 @@ export default {
         placeholders: {
           name: 'Enter the product name',
           quantity: 'Enter the quantity of the product',
-          price: 'PriInform the price of the producte',
+          price: 'Enter the price of the product',
         }
       },
     },

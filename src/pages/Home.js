@@ -17,11 +17,13 @@ const Home = (props) => {
     return acc + item.price * item.quantity;
   }, acc);
 
+  const completeds = props.listItems.filter((item) => item.completed);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.quantityFinishedItems}>
-          0/{props.listItems.length}
+          {completeds.length}/{props.listItems.length}
         </Text>
         <View style={styles.containerTotalValue}>
           <Text style={styles.labelTotalValue}>
