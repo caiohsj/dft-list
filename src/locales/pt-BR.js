@@ -1,9 +1,15 @@
 export default {
   components: {
-    login_form: {
-      email: 'Email',
-      password: 'Senha',
-      button: 'Entrar',
+    forms: {
+      login_form: {
+        email: 'Email',
+        password: 'Senha',
+        button: 'Entrar',
+      },
+      create_list_item_form: {
+        cancel: 'Cancelar',
+        save: 'Salvar',
+      },
     },
     tables: {
       list_items_table: {
@@ -20,6 +26,7 @@ export default {
       header: {
         total_of_buy: 'Total da sua compra:',
       },
+      add_button: 'Adicionar',
     },
   },
 };

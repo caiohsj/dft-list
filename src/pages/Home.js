@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, Modal, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
-import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
 import { fetchListItems, saveListItem } from '../services/listItem';
+import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
+import BaseButton from '../components/buttons/BaseButton';
+import CreateListItemForm from '../components/forms/CreateListItemForm';
 
 const Home = (props) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   fetchListItems();
 
   let acc = 0;
@@ -28,6 +32,34 @@ const Home = (props) => {
           </Text>
         </View>
       </View>
+
+      <BaseButton
+        bgColor="#65D363"
+        width="90%"
+        textColor="#FFFFFF"
+        text={translate('pages.home.add_button')}
+        alignSelf="center"
+        marginBottom={24}
+        onPress={() => {
+          setModalVisible(true);
+        }}
+      />
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <CreateListItemForm
+              onCancel={() => {
+                setModalVisible(!modalVisible);
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
 
       <ListItemsTable items={props.listItems} />
     </View>
@@ -79,5 +111,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#65D363',
     marginLeft: 10,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalView: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 4,
+    paddingVertical: 24,
+    paddingHorizontal: 16,
   },
 });
