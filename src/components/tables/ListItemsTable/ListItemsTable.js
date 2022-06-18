@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import Item from './Item';
 import { translate } from '../../../locales';
 
@@ -24,9 +24,11 @@ const ListItemsTable = (props) => {
           {translate('components.tables.list_items_table.header.quantity')}
         </Text>
       </View>
-      <View style={styles.containerListItems}>
-        {renderItem()}
-      </View>
+      <ScrollView>
+        <View style={styles.containerListItems}>
+          {renderItem()}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
   containerList: {
     borderColor: '#C4C4C4',
     borderWidth: 1,
+    flex: 1,
   },
   containerListHeader: {
     flexDirection: 'row',

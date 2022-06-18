@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Modal, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
 import { fetchListItems, createListItem, completeListItem } from '../services/listItem';
@@ -68,14 +68,12 @@ const Home = (props) => {
         </View>
       </Modal>
       
-      <ScrollView>
-        <ListItemsTable
-          items={props.listItems}
-          onItemPress={(item) => {
-            completeListItem(item.id);
-          }}
-        />
-      </ScrollView>
+      <ListItemsTable
+        items={props.listItems}
+        onItemPress={(item) => {
+          completeListItem(item.id);
+        }}
+      />
     </View>
   );
 }
