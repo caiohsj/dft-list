@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Modal } from 'react-native';
 import { connect } from 'react-redux';
+import { translate } from '../../locales';
 import BaseButton from '../buttons/BaseButton';
 
 const ListItemModal = (props) => {
@@ -15,10 +16,10 @@ const ListItemModal = (props) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.title}>
-            Tem certeza que deseja deletar o item ({props.item.name})?
+            {translate('components.modals.list_item_modal.title')} ({props.item.name})?
           </Text>
           <BaseButton
-            text="Excluir"
+            text={translate('components.modals.list_item_modal.delete_button')}
             bgColor="#EC7063"
             textColor="#FFFFFF"
             onPress={() => {

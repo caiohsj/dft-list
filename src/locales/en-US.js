@@ -25,6 +25,12 @@ export default {
         },
       },
     },
+    modals: {
+      list_item_modal: {
+        title: 'Are you sure you want to delete this item',
+        delete_button: 'Delete',
+      },
+    },
   },
   pages: {
     home: {

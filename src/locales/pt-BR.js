@@ -25,6 +25,12 @@ export default {
         },
       },
     },
+    modals: {
+      list_item_modal: {
+        title: 'Você tem certeza que deseja excluir este item',
+        delete_button: 'Excluir',
+      },
+    },
   },
   pages: {
     home: {
