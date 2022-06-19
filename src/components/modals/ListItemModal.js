@@ -16,7 +16,7 @@ const ListItemModal = (props) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.title}>
-            {translate('components.modals.list_item_modal.title')} ({props.item.name})?
+            {translate('components.modals.list_item_modal.title')} ({props.item?.name})?
           </Text>
           <BaseButton
             text={translate('components.modals.list_item_modal.delete_button')}
