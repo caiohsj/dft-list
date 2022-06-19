@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
-import store from '../store';
+import numberFormat from '../plugins/numberFormat';
 import { fetchListItems, createListItem, completeListItem, deleteListItem } from '../services/listItem';
 import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
 import BaseButton from '../components/buttons/BaseButton';
@@ -34,7 +34,7 @@ const Home = (props) => {
             {translate('pages.home.header.total_of_buy')}
           </Text>
           <Text style={styles.totalValue}>
-            {totalValue}
+            {numberFormat(totalValue)}
           </Text>
         </View>
       </View>

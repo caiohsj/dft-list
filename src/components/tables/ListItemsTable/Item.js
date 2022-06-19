@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import iconErrorFilled from '../../../assets/icons/error-filled.png';
 import iconCheckMark from '../../../assets/icons/check-mark.png';
+import numberFormat from '../../../plugins/numberFormat';
 
 const Item = (props) => {
   const { item } = props;
@@ -24,7 +25,7 @@ const Item = (props) => {
         {item.name}
       </Text>
       <Text style={[styles.textRight, styles.listItemColumn, styles.priceColumn]}>
-        {item.price}
+        {numberFormat(item.price)}
       </Text>
       <Text style={[styles.textRight, styles.listItemColumn, styles.quantityColumn]}>
         {item.quantity}
