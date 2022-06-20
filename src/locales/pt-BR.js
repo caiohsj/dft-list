@@ -39,6 +39,9 @@ export default {
         total_of_buy: 'Total da sua compra:',
       },
       add_button: 'Adicionar',
+      messages: {
+        delete_success: 'Item excluído com sucesso',
+      },
     },
   },
 };

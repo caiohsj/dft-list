@@ -86,6 +86,7 @@ const Home = (props) => {
           deleteListItem(item.id).then(() => {
             setListItemModalVisible(false);
             fetchListItems();
+            props.dispatch({ type: 'SET_ERROR', payload: { visible: true, messages: [translate('pages.home.messages.delete_success')] } });
           });
         }}
       />

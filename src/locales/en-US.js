@@ -39,6 +39,9 @@ export default {
         total_of_buy: 'Total of your buy:',
       },
       add_button: 'Add Item',
+      messages: {
+        delete_success: 'Item deleted successfully',
+      },
     },
   },
 };
