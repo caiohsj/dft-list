@@ -8,8 +8,8 @@ const createTable = async (db) => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(255) NOT NULL,
       completed BOOLEAN NOT NULL DEFAULT 0,
-      price DECIMAL(10,2) NOT NULL,
-      quantity INTEGER NOT NULL
+      price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+      quantity INTEGER NOT NULL DEFAULT 0
     );`;
 
     await db.executeSql(query);
@@ -23,7 +23,7 @@ const createTable = async (db) => {
     const db = await getDBConnection();
     try {
       const listItems = [];
-      const results = await db.executeSql(`SELECT * FROM ${tableName}`);
+      const results = await db.executeSql(`SELECT * FROM ${tableName} ORDER BY id DESC`);
       results.forEach(result => {
         for (let index = 0; index < result.rows.length; index++) {
           listItems.push(result.rows.item(index))

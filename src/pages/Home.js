@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
@@ -14,7 +14,9 @@ const Home = (props) => {
   const [createListItemModalVisible, setCreateListItemModalVisible] = useState(false);
   const [listItemModalVisible, setListItemModalVisible] = useState(false);
 
-  fetchListItems();
+  useEffect(() => {
+    fetchListItems();
+  }, []);
 
   let acc = 0;
   const totalValue = props.listItems.reduce((acc, item) => {
@@ -59,6 +61,7 @@ const Home = (props) => {
         onSave={(item) => {
           createListItem(item).then(() => {
             setCreateListItemModalVisible(false);
+            fetchListItems();
           });
         }}
       />
@@ -66,7 +69,9 @@ const Home = (props) => {
       <ListItemsTable
         items={props.listItems}
         onItemPress={(item) => {
-          completeListItem(item.id);
+          completeListItem(item.id).then(() => {
+            fetchListItems();
+          });
         }}
         onItemLongPress={(item) => {
           setListItemModalVisible(true);
@@ -80,6 +85,7 @@ const Home = (props) => {
         onDelete={(item) => {
           deleteListItem(item.id).then(() => {
             setListItemModalVisible(false);
+            fetchListItems();
           });
         }}
       />
