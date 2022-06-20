@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   iconColumn: {
-    width: '10%',
+    width: '5%',
+    paddingHorizontal: 0,
+    paddingTop: 4,
   },
   productColumn: {
     width: '50%',
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     width: '15%',
   },
   quantityColumn: {
-    width: '25%',
+    width: '30%',
   },
 });
 

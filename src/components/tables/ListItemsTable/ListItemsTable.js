@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   iconColumn: {
-    width: '10%',
+    width: '5%',
   },
   productColumn: {
     width: '50%',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     width: '15%',
   },
   quantityColumn: {
-    width: '25%',
+    width: '30%',
   },
   rightColumnHeader: {
     textAlign: 'right',
