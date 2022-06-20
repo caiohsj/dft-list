@@ -8,8 +8,8 @@ const createTable = async (db) => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(255) NOT NULL,
       completed BOOLEAN NOT NULL DEFAULT 0,
-      price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-      quantity INTEGER NOT NULL DEFAULT 0
+      price DECIMAL(10,2) NOT NULL,
+      quantity INTEGER NOT NULL
     );`;
 
     await db.executeSql(query);
@@ -45,9 +45,9 @@ export const createListItem = async (item) => {
   return db.executeSql(insertQuery);
 };
 
-export const completeListItem = async (id) => {
+export const toggleCompleteListItem = async (item) => {
   const db = await getDBConnection();
-  const updateQuery = `UPDATE ${tableName} SET completed = 1 WHERE id = ${id}`;
+  const updateQuery = `UPDATE ${tableName} SET completed = ${!item.completed} WHERE id = ${item.id}`;
 
   return db.executeSql(updateQuery);
 };

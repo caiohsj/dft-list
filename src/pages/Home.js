@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from '../locales';
 import numberFormat from '../plugins/numberFormat';
-import { fetchListItems, createListItem, completeListItem, deleteListItem } from '../services/listItem';
+import { fetchListItems, createListItem, toggleCompleteListItem, deleteListItem } from '../services/listItem';
 import ListItemsTable from '../components/tables/ListItemsTable/ListItemsTable';
 import BaseButton from '../components/buttons/BaseButton';
 import CreateListItemModal from '../components/modals/CreateListItemModal';
@@ -69,7 +69,7 @@ const Home = (props) => {
       <ListItemsTable
         items={props.listItems}
         onItemPress={(item) => {
-          completeListItem(item.id).then(() => {
+          toggleCompleteListItem(item).then(() => {
             fetchListItems();
           });
         }}
