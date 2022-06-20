@@ -4,7 +4,8 @@ import Item from './Item';
 import { translate } from '../../../locales';
 
 const ListItemsTable = (props) => {
-  const renderItem = () => {
+  const renderItems = () => {
+    if (props.items.length == 0) return renderPlaceholder();
     return props.items.map((item) => {
       return (
         <Item
@@ -15,6 +16,14 @@ const ListItemsTable = (props) => {
         />
       );
     });
+  };
+
+  const renderPlaceholder = () => {
+    return (
+      <Text style={styles.placeholder}>
+        {translate('components.tables.list_items_table.placeholder')}
+      </Text>
+    );
   };
 
   return (
@@ -33,7 +42,7 @@ const ListItemsTable = (props) => {
       </View>
       <ScrollView>
         <View style={styles.containerListItems}>
-          {renderItem()}
+          {renderItems()}
         </View>
       </ScrollView>
     </View>
@@ -74,6 +83,13 @@ const styles = StyleSheet.create({
   containerListItems: {
     padding: 10,
     flexDirection: 'column',
+  },
+  placeholder: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000000',
+    textAlign: 'center',
+    padding: 10,
   },
 });
 

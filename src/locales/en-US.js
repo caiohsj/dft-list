@@ -23,6 +23,7 @@ export default {
           price: 'Price',
           quantity: 'Quantity',
         },
+        placeholder: 'You haven\'t added any product yet :(',
       },
     },
     modals: {

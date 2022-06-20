@@ -23,6 +23,7 @@ export default {
           price: 'Preço',
           quantity: 'Quantidade',
         },
+        placeholder: 'Você não cadastrou nenhum produto :(',
       },
     },
     modals: {
