@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "hellofilho-react-native",
-    "slug": "hellofilho-react-native",
+    "name": "dft-list",
+    "slug": "dft-list",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "hellofilho-react-native"
+  "name": "dft-list"
 }

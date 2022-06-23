@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-import { translate } from "../../locales";
+import { translate } from '../../locales';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState(null);
@@ -12,13 +12,13 @@ const LoginForm = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text>{translate('components.login_form.email')}</Text>
+      <Text>{translate('components.forms.login_form.email')}</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
         value={email}
       />
-      <Text>{translate('components.login_form.password')}</Text>
+      <Text>{translate('components.forms.login_form.password')}</Text>
       <TextInput
         style={styles.input}
         onChangeText={setPassword}
@@ -27,7 +27,7 @@ const LoginForm = (props) => {
       />
       <Button
         onPress={onLogin}
-        title={translate('components.login_form.button')}
+        title={translate('components.forms.login_form.button')}
       />
     </View>
   );

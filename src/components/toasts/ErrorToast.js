@@ -28,7 +28,7 @@ const ErrorToast = (props) => {
   }, [props.visible]);
 
   return (
-    <Text></Text>
+    <></>
   );
 };
 
